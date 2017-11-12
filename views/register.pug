@@ -1,0 +1,37 @@
+extends layout
+
+block content
+	div.container.fill-heigth
+		div.row.align-items-center.full-heigth
+			div.col-12
+				div.row.justify-content-center
+					div.col-12
+						h1.text-center.login-title.p-4 Registration Details
+				div.row.justify-content-center
+					div.col-sm-12.col-lg-4.col-lg-offset-4
+						div.signup-wall
+							form(class='form-signin', action='/signup', method='POST')
+								div.form-group
+									input(type='text', name='firstName', class='form-control form-control-lg', placeholder='First Name',required)
+								div.form-group
+									input(type='text', name='lastName', class='form-control form-control-lg', placeholder='Last Name',required)
+								div.form-group
+									input(type='date', name='birthdate', class='form-control form-control-lg', required)
+								div.form-group
+									select.form-control.form-control-lg(name='hospital')
+										each hospital in hospitals
+											option(value=hospital._id) #{hospital.city} - #{hospital.name}
+								div.form-group
+									input(type='email', name='email', class='form-control form-control-lg', placeholder='Email',required)
+								div.form-group
+									input(type='password', name='password', class='form-control form-control-lg nomargin', placeholder='Password', required)
+								div.form-group
+									input(type='tel', name='tel', class='form-control form-control-lg bfh-phone', data-format="+39 dddddddddd", required)
+								div.form-group
+									button(class='btn btn-lg btn-primary btn-block', type='submit') Register
+								span.clearfix
+							p.text-center Already have an account? 
+								a(href='/') Sign In.
+						#message
+							if message
+								h1.text-center.error-message #{message}

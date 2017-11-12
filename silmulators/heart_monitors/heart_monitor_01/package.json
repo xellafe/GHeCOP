@@ -1,0 +1,17 @@
+{
+  "name": "heart_monitor_01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "heart_monitor.js",
+  "scripts": {
+    "start": "node heart_monitor.js",
+    "test": "nodemon heart_monitor.js"
+  },
+  "author": "Federico Xella",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-rc.2"
+  }
+}

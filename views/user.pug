@@ -1,0 +1,136 @@
+extends layout
+
+block content
+	header
+		nav.navbar.navbar-toggleable-md.navbar-dark
+			button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
+				span.navbar-toggler-icon
+			a.navbar-brand(href="#")
+				h4 GLOBAL HEATHCARE OPEN PLATFORM
+			
+			div.collapse.navbar-collapse.justify-content-end
+				ul.navbar-nav
+					li.nav-item.dropdown
+						a.nav-link.dropdown-toggle(href="/user", id="navbarDropdownMenuLink", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") #{user.name.first} #{user.name.last}
+						div.dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
+							a.dropdown-item(href="/user") Dashboard
+							a.dropdown-item(href="/devices") Manage devices
+							a.dropdown-item(href="/signout") Sign Out
+	main.site-content
+		.container-fluid.custom-container
+			.row.justify-content-center.fill-height
+				#patients.col-md-5.border-right
+					h4.title Manage Patient
+					table.table.table-hover.table-sm
+						thead
+							tr
+								th.text-center Name
+								th.text-center Surname
+								th.text-center Birthdate
+								th.text-center Sex
+								th.text-center Address
+								th.text-center Hospitalized
+								th.text-center Code
+						tbody
+							each patient in patients
+								tr(onclick="seePatientInfo('"+patient._id+"')")
+									td.text-center #{patient.name.last}
+									td.text-center #{patient.name.first}
+									td.text-center #{patient.birthDate}
+									td.text-center #{patient.sex}
+									td.text-center #{patient.address.street}, #{patient.address.number} - #{patient.address.city}
+									td.text-center 
+										if(patient.hospitalized)
+											span#is-hospitalized
+												i.fa.fa-check(aria-hidden="true")
+										else
+											span#not-hospitalized
+												i.fa.fa-times(aria-hidden="true")
+									td.text-center #{patient.code}
+									td.text-center
+										button.delete-btn.btn.btn-danger.btn-sm(data-toggle="popover", data-trigger="hover", data-content="Delete "+patient.name.first+" "+patient.name.last) 
+											i.fa.fa-times(aria-hidden="true")
+					div#add-patient-container
+						h6.title.text-center Add Patient
+						form#add-patient(action="/addpatient", method="POST")
+							.row
+								.col
+									label(for="patientName") First name
+									input#patientName.form-control(type='text', name="name", placeholder='', required)
+								.col
+									label(for="patientSurame") Last name
+									input#patientSurame.form-control(type='text', name="surname", placeholder='', required)
+								.col
+									label(for="patientBirthdate") Birthdate
+									input#patientBirthdate.form-control(type='date', name='birthdate', required)
+								.col
+									label(for="patientSex") Sex
+									select#patientSex.form-control(name='sex')
+										option(value="Male") Male
+										option(value="Female") Female
+							.row#patient-address
+								.col-6
+									label(for="address") Address
+									input#address.form-control(type='text', name="address", placeholder='', required)
+								.col-2
+									label(for="civicNumber") Number
+									input#civicNumber.form-control(type='text', name="civic", placeholder='', required)
+								.col-4
+									label(for="city") City
+									input#city.form-control(type='text', name="city", placeholder='', required)
+							.row#hospital-info.align-items-center
+								.col-2.form-check.form-check-inline
+									label#hospitalized.custom-control.custom-checkbox
+										input.custom-control-input.form-check-input-lg(type="checkbox" name="hospitalized" value="true") 
+										span.custom-control-indicator
+										span.custom-control-description Hospitalized
+								.col.form-inline
+									label(for="patientCode") Code
+									img.help-img(src="/images/help_small.png", data-toggle="tooltip" title="If your hospital provides a code for the patient, you can put it here.")
+									input#patientCode.form-control(type='text', name='code', placeholder='(Optional)')
+									input(type="hidden", name="doctor_id", value=user._id)
+								.col.text-center
+									button#add-patient-btn.btn.btn-success(type='submit') Add
+				#patient-info.col-md-5
+					h4.title Patient Info
+					#patient-info-container
+						.row
+							#info-patient-name-label.col-2 Name:
+							#info-patient-name.col-2 Xella Francesco
+						.row#real-time-data
+							.col-2 Actual BPM:
+							.col-2 63 BPM
+						.row
+							.col-2 Alarm set:
+							.col-2 - None -
+						.row
+							.col
+								a(href="#") Manage Alarms
+
+
+	footer
+block scripts
+	script(type="text/javascript").
+		var ws = new WebSocket('ws://localhost:8080');
+		ws.onmessage = function (msg) {
+			console.log("Message received: " + msg.data);
+		}
+		var msg = {
+			device: "browser",
+			action: "send_medic_id",
+			data: "#{ user._id }"
+		}
+		ws.onopen = function (event) {
+			ws.send(JSON.stringify(msg));
+		};
+
+		function seePatientInfo(patientID) {
+			if(ws.readyState === ws.OPEN) {
+				var msg = {
+					device: "browser",
+					action: "send_patient_id",
+					data: patientID
+				}
+				ws.send(JSON.stringify(msg));
+			}
+		}

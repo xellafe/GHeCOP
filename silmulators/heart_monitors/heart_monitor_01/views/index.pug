@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    .ink-grid
+        .column-group
+            .large-75.medium-100
+                h1.fw-200.condensed Heart Monitor 01
+                p.fw-200.extralarge.condensed Configuration
+                form.ink-form
+                    .control-group.column-group.gutters
+                        label.all-10.align-right(for="minBPM") Min BPM
+                        .control.all-10
+                            input(id="minBPM", type="text", name="minBPM")
+block scripts
+	script(type="text/javascript").
+		var ws = new WebSocket('ws://localhost:10000');
+		ws.onmessage = function (msg) {
+			console.log("Message received: " + msg.data);
+		}
+		var msg = {
+			device: "heart_monitor_01",
+			action: "send_data",
+			data: simulateHeartBeat
+		}
+		ws.onopen = function (event) {
+			ws.send(JSON.stringify(msg));
+		};
+
+		var simulateHeartBeat = function() {
+            return 60;
+        }

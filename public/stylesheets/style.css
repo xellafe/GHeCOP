@@ -1,0 +1,161 @@
+/** ALL **/
+
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1;
+    position: relative;
+}
+
+.custom-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.fill-height {
+    height: 100%;
+}
+
+.title {
+    color: #FFF;
+    padding: 10px;
+    background-color: #2196F3;
+}
+
+.border-right {
+    border-right: 1px solid #f7f7f7
+}
+
+button {
+    cursor: pointer;
+}
+
+/** BACKEND **/
+
+#hospital {
+    padding: 0;
+    position: relative;
+}
+
+#add-hospital-container {
+    position: absolute;
+    bottom: 0px;
+}
+
+#add-hospital {
+    padding: 15px;
+}
+
+
+
+#add-hospital-button {
+    margin-left: 10px;
+}
+
+/** HOME **/
+
+.profile-img {
+    margin-top: 15px;
+}
+
+/** NAVBAR **/
+
+.navbar {
+    background-color: #3F51B5;
+}
+
+.navbar > a{
+    color: rgba(255, 255, 255, 1);
+}
+
+#navbarDropdownMenuLink {
+    color: rgba(255, 255, 255, 1);
+    margin-right: 50px;
+}
+
+/** FOOTER **/
+
+/** USER **/
+
+#patients, #patient-info {
+    padding: 0;
+    position: relative;
+}
+
+#add-patient-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+#add-patient {
+    padding: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+label {
+    margin-left: 5px;
+}
+
+#patientSex {
+    max-width: 120px;
+}
+
+#civicNumber {
+    max-width: 90px;
+    text-align: center;
+}
+
+#city {
+    max-width: 195px;
+}
+
+label > input {
+    margin-left: 5px;
+}
+
+#patient-address, #hospital-info {
+    margin-top: 15px;
+}
+
+#hospitalized {
+    margin-top: 15px;
+}
+
+.help-img {
+    width: 15px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#is-hospitalized {
+    color: green;
+}
+
+#not-hospitalized {
+    color: red;
+}
+
+#patient-info-container {
+    margin: 20px;
+}
+
+/* MANAGE DEVICES */
+
+#add-device-container {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+
+#add-device {
+    padding: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+}

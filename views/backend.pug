@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    header
+        nav.navbar.navbar-toggleable-md.navbar-light.bg-faded
+            button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+            div.collapse.navbar-collapse.justify-content-end
+                ul.navbar-nav
+                    li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle(href="http://example.com", id="navbarDropdownMenuLink", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") #{user.name.first} #{user.name.last}
+                        div.dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
+                            a.dropdown-item(href="/signout") Sign Out
+    main.site-content
+        .container-fluid.custom-container
+            .row.fill-height
+                #hospital.col-md-2.border-right
+                    h4.title.text-center Hospital Management
+                    table.table.table-striped.table-sm
+                        thead
+                            tr
+                                th Name
+                                th City
+                                th
+                        tbody
+                            each hospital in hospitals
+                                tr
+                                    td #{hospital.name} 
+                                    td #{hospital.city}
+                                    td.text-center
+                                        button.delete-btn.btn.btn-danger.btn-sm(data-toggle="popover", data-trigger="hover", data-content="Delete "+hospital.name)
+                                            i.fa.fa-times(aria-hidden="true")
+                    div#add-hospital-container
+                        h6.title.text-center Add Hospital
+                        form#add-hospital.row(action='/add_hospital', method="POST")
+                            .col
+                                label.sr-only(for='hospitalName') Hospital Name
+                                input#hospitalName.form-control.form-control-sm(type='text', name="name", placeholder='Hospital Name', required)
+                            .col
+                                label.sr-only(for='hospitalCity') Hospital City
+                                input#hospitalCity.form-control.form-control-sm(type='text', name="city", placeholder='Hospital City', required)
+                            .col-2
+                                button.btn.btn-success.btn-sm(type="submit", data-toggle="popover", data-trigger="hover", data-content="Add hospital")
+                                    i.fa.fa-plus(aria-hidden="true")
+    footer

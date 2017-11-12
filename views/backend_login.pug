@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	div.container.full-heigth
+		div.row.align-items-center.full-heigth
+			div.col-12
+				div.row.justify-content-center
+					div.col-12
+						h1.text-center.login-title.p-3 Global Healthcare Platforfm - Backend Access
+							div.account-wall
+								img(class='profile-img rounded-circle', src='https://ssl.gstatic.com/accounts/ui/avatar_2x.png')
+				div.row.justify-content-center
+					div.col-sm-12.col-lg-4.col-lg-offset-4
+						form(class='form-signin', action='/login_backend', method='POST')
+							div.form-group
+								input(type='text', name='username' class='form-control form-control-lg', placeholder='Email', aria-describedby="emailHelp", required, autofocus)
+							div.form-group
+								input(type='password', name='password' class='form-control form-control-lg', placeholder='Password', required)
+							div.form-group
+								button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
+								span.clearfix
+						#message
+							if message
+								h1.text-center.error-message #{message}

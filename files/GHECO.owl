@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns      ="http://ghecop.com/ontology/gheco#"
+    xml:base   ="http://ghecop.com/ontology/gheco"
+    xmlns:owl  ="http://www.w3.org/2002/07/owl#"
+    xmlns:rdf  ="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs ="http://www.w3.org/2000/01/rdf-schema#">
+
+<owl:Ontology rdf:about="http://ghecop.com/ontology/gheco"> 
+  <rdfs:comment xml:lang="en">An ontology to describe healthcare operation and entities</rdfs:comment>
+  <rdfs:comment xml:lang="it">Un'ontologia che descrive operazioni ed entità relative all'healthcare</rdfs:comment>
+  <rdfs:label>Global Healthcare Ontology</rdfs:label>
+</owl:Ontology>
+
+<!-- Classes -->
+
+<owl:Class rdf:ID="Patient">
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  <rdfs:label xml:lang="en">Patient</rdfs:label>
+  <rdfs:label xml:lang="it">Paziente</rdfs:label>
+  <owl:sameAs rdf:resource="#Person"/>
+  <rdfs:comment xml:lang="en">Describe a patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Descrive un paziente</rdfs:comment>
+  <rdfs:isDefinedBy rdf:resource="http://ghecop.com/ontology/gheco#"/>
+</owl:Class>
+
+<owl:Class rdf:ID="Doctor">
+  <rdfs:subClassOf rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  <rdfs:label xml:lang="en">Doctor</rdfs:label>
+  <rdfs:label xml:lang="it">Dottore</rdfs:label>
+  <owl:sameAs rdf:resource="#Person"/>
+  <rdfs:comment xml:lang="en">Describe a doctor</rdfs:comment>
+  <rdfs:comment xml:lang="it">Descrive un dottore</rdfs:comment>
+  <rdfs:isDefinedBy rdf:resource="http://ghecop.com/ontology/gheco#"/>
+</owl:Class>
+
+<owl:Class rdf:ID="WearableDevice">
+  <rdfs:label xml:lang="en">Wereable Device</rdfs:label>
+  <rdfs:label xml:lang="it">Dispositivo Indossabile</rdfs:label>
+  <rdfs:comment xml:lang="en">Describe a wearable device</rdfs:comment>
+  <rdfs:comment xml:lang="it">Descrive un dispositivo indossabile</rdfs:comment>
+</owl:Class>
+
+<!-- Object Properties -->
+
+<owl:ObjectProperty rdf:ID="isAttended">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="#Doctor"/>
+  <rdfs:label xml:lang="en">Is attended</rdfs:label>
+  <rdfs:label xml:lang="it">Viene curato</rdfs:label>
+  <rdfs:comment xml:lang="en">A link to the doctor who attend this patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Un collegamento al dottore curante del paziente</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:ID="wear">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="#WearableDevice"/>
+  <rdfs:label xml:lang="en">Wear</rdfs:label>
+  <rdfs:label xml:lang="it">Indossa</rdfs:label>
+  <rdfs:comment xml:lang="en">A link to the device weared by this patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Un collegamento al dispositivo indossato dal paziente</rdfs:comment>
+</owl:ObjectProperty>
+
+<!-- Data Properties -->
+
+<owl:DatatypeProperty rdf:ID="firstName">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">First Name</rdfs:label>
+  <rdfs:label xml:lang="it">Nome</rdfs:label>
+  <rdfs:comment xml:lang="en">The first name of this patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Il nome del paziente</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="lastName">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">Last Name</rdfs:label>
+  <rdfs:label xml:lang="it">Cognome</rdfs:label>
+  <rdfs:comment xml:lang="en">The last name of this patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Il cognome del paziente</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="sex">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">Sex</rdfs:label>
+  <rdfs:label xml:lang="it">Sesso</rdfs:label>
+  <rdfs:comment xml:lang="en">The sex of this patient</rdfs:comment>
+  <rdfs:comment xml:lang="it">Il sesso del paziente</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="birthdate">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date"/>
+  <rdfs:label xml:lang="en">Birthdate</rdfs:label>
+  <rdfs:label xml:lang="it">Data di nascita</rdfs:label>
+  <rdfs:comment xml:lang="en">The birthdate of this patient (YYYY-MM-DD)</rdfs:comment>
+  <rdfs:comment xml:lang="it">La data di nascita del paziente (AAAA-MM-GG)</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="address">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">Address</rdfs:label>
+  <rdfs:label xml:lang="it">Indirizzo</rdfs:label>
+  <rdfs:comment xml:lang="en">The address of this patient (Street, civic)</rdfs:comment>
+  <rdfs:comment xml:lang="it">L'indirizzo del paziente (Via, civico)</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="hospitalCode">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">Hospital code</rdfs:label>
+  <rdfs:label xml:lang="it">Codice ospedaliero</rdfs:label>
+  <rdfs:comment xml:lang="en">The patient code provided by the hospital</rdfs:comment>
+  <rdfs:comment xml:lang="it">Il codice fornito dall'ospedale per questo paziente</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="inHospital">
+  <rdfs:domain rdf:resource="#Patient"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <rdfs:label xml:lang="en">In hospital</rdfs:label>
+  <rdfs:label xml:lang="it">In ospedale</rdfs:label>
+  <rdfs:comment xml:lang="en">Tells if the patient is attended inside the hospital (True) or at home (False)</rdfs:comment>
+  <rdfs:comment xml:lang="it">Dice se il paziente viene seguito in ospedale (True) oppure a casa (False)</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:ID="idCode">
+  <rdfs:domain rdf:resource="#WearableDevice"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:label xml:lang="en">ID Code</rdfs:label>
+  <rdfs:label xml:lang="it">Codice ID</rdfs:label>
+  <rdfs:comment xml:lang="en">ID Code of the wereable device</rdfs:comment>
+  <rdfs:comment xml:lang="it">Codice ID del dispositivo indossabile</rdfs:comment>
+</owl:DatatypeProperty>
+
+</rdf:RDF>

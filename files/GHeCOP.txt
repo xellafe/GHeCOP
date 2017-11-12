@@ -1,0 +1,13 @@
+Global HealthCare Open Platform API service
+
+keys:
+[uk] - require user api key
+<value_name> - 
+
+The following paths are exposed by this API:
+
+-GET-
+/user/[uk] - Returns the unser's main info
+
+-POST-
+/user/<heartbeat_value>/[uk] - Update the heartbeat value for the user to whom the provided key belongs

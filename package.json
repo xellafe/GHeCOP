@@ -1,0 +1,38 @@
+{
+  "name": "ghecop",
+  "version": "1.0.0",
+  "private": true,
+  "main": "bin/www",
+  "scripts": {
+    "start": "node bin/www"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "~1.15.2",
+    "clarinet": "^0.11.0",
+    "collections": "^5.0.6",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "crypto-hashing": "^1.0.0",
+    "debug": "~2.2.0",
+    "events": "^1.1.1",
+    "express": "~4.14.0",
+    "express-session": "^1.15.1",
+    "jsesc": "^2.4.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.10.8",
+    "mongoose-simpledb": "^5.1.0",
+    "morgan": "~1.7.0",
+    "ms": "^2.0.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pug": "~2.0.0-beta6",
+    "restify": "^5.0.0",
+    "secure-random": "^1.1.1",
+    "serve-favicon": "~2.3.0",
+    "uuid": "^3.1.0",
+    "ws": "^3.0.0"
+  },
+  "author": "Federico Xella",
+  "license": "GNU"
+}

@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    header
+        nav.navbar.navbar-toggleable-md.navbar-dark
+            button.navbar-toggler.navbar-toggler-right(type="button", data-toggle="collapse", data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+            a.navbar-brand(href="#")
+                h4 GLOBAL HEATHCARE OPEN PLATFORM
+            div.collapse.navbar-collapse.justify-content-end
+                ul.navbar-nav
+                    li.nav-item.dropdown
+                        a.nav-link.dropdown-toggle(href="/user", id="navbarDropdownMenuLink", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") #{user.name.first} #{user.name.last}
+                        div.dropdown-menu(aria-labelledby="navbarDropdownMenuLink")
+                            a.dropdown-item(href="/user") Dashboard
+                            a.dropdown-item(href="/devices") Manage devices
+                            a.dropdown-item(href="/signout") Sign Out
+    main.site-content
+        .container-fluid.custom-container
+            .row.justify-content-center.fill-height
+                #devices.col-md-5.border-right
+                    h4.title Manage Devices
+                    table.table.table-hover.table-sm
+                        thead
+                            tr
+                                th.text-center Name
+                                th.text-center Type
+                                th.text-center Assigned to
+                        tbody
+                            each device in devices
+                                tr
+                                    td.text-center #{device.name}
+                                    td.text-center #{device.type}
+                                    td.text-center Xella Francesco
+                                    td.text-center
+                                        button.delete-btn.btn.btn-danger.btn-sm(data-toggle="popover", data-trigger="hover", data-content="Delete "+device.name) 
+                                            i.fa.fa-times(aria-hidden="true")
+                    div#add-device-container
+                        h6.title.text-center Add Device
+                        form#add-device(action="/adddevice", method="POST")
+                            .row.align-items-center
+                                .col
+                                    label(for="deviceName") Device name
+                                    input#deviceName.form-control(type='text', name="name", placeholder='', required)
+                                .col
+                                    label(for="deviceType") Device Type
+                                    select.form-control(name='type')
+                                        option(value="heart_monitor") Heart monitor
+                                .col
+                                    input(type="hidden", name="doctor_id", value=user._id)
+                                    button#add-device-btn.btn.btn-success(type='submit') Add
+    footer
