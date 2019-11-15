@@ -20,7 +20,7 @@
     "express-session": "^1.15.1",
     "jsesc": "^2.4.0",
     "lodash": "^4.17.4",
-    "mongoose": "^4.10.8",
+    "mongoose": ">=5.7.5",
     "mongoose-simpledb": "^5.1.0",
     "morgan": "~1.7.0",
     "ms": "^2.0.0",
